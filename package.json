@@ -1,0 +1,12 @@
+{
+  "name": "sarvam-calm-assistant",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A gentle stress check-in and calming-technique prototype powered by Sarvam AI.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

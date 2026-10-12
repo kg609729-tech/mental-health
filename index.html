@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f4ef">
+  <meta name="description" content="A gentle conversational wellbeing check-in with calming breathing, grounding, and music ideas.">
+  <title>Sukoon — a moment to reset</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Sukoon home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 26.4S4.6 19.9 4.6 11.9A6.2 6.2 0 0 1 16 8.6a6.2 6.2 0 0 1 11.4 3.3C27.4 19.9 16 26.4 16 26.4Z"/><path d="M8.3 16.5h5l2-4 3.2 7 2-3h3.2"/></svg></span>
+        <span class="brand-word">sukoon<span class="brand-dot">.</span><small>a moment to reset</small></span>
+      </a>
+      <div class="topbar-right">
+        <span class="privacy-pill"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="2"/><path d="M5.2 7V4.7a2.8 2.8 0 0 1 5.6 0V7"/></svg> Your space, your pace</span>
+        <span id="connection-status" class="connection-status"><i></i><span>Starting preview…</span></span>
+      </div>
+    </header>
+
+    <main class="app-grid">
+      <section class="chat-panel" aria-label="Wellbeing chat">
+        <div class="chat-heading">
+          <div>
+            <p class="eyebrow">A GENTLE CHECK-IN</p>
+            <h1>What’s on your mind?</h1>
+            <p class="heading-copy">No pressure to find the perfect words. Start wherever you are.</p>
+          </div>
+          <div class="sun-art" aria-hidden="true"><span class="sun-core"></span><span class="sun-ray r1"></span><span class="sun-ray r2"></span><span class="sun-ray r3"></span><span class="sun-ray r4"></span><span class="sun-ray r5"></span><span class="sun-ray r6"></span><span class="sun-ray r7"></span><span class="sun-ray r8"></span></div>
+        </div>
+
+        <div id="chat-log" class="chat-log" role="log" aria-live="polite" aria-relevant="additions text">
+          <div class="message assistant-message">
+            <div class="avatar" aria-hidden="true">s.</div>
+            <div class="message-content">
+              <div class="bubble">
+                <p>Hi, I’m here with you. 🌿</p>
+                <p>You can tell me what’s been weighing on you, or we can try a small reset together. I may notice possible stress cues in your wording, but I can’t diagnose how you’re feeling.</p>
+              </div>
+              <span class="message-time">A little space to breathe</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="prompt-area" aria-label="Suggested messages">
+          <p class="prompt-label">NOT SURE WHERE TO START?</p>
+          <div class="prompt-chips">
+            <button class="prompt-chip" data-prompt="I feel overwhelmed and have a lot on my mind."><span>〰</span> I feel overwhelmed</button>
+            <button class="prompt-chip" data-prompt="Can you guide me through a gentle breathing exercise?"><span>○</span> Try breathing</button>
+            <button class="prompt-chip" data-prompt="Suggest some calming music for a busy mind."><span>♫</span> Calming music</button>
+            <button class="prompt-chip" data-prompt="Help me feel grounded in the present moment."><span>✳</span> Help me ground</button>
+          </div>
+        </div>
+
+        <form id="chat-form" class="composer" autocomplete="off">
+          <label class="sr-only" for="message-input">Write what is on your mind</label>
+          <textarea id="message-input" rows="1" maxlength="4000" placeholder="Write whatever feels okay to share…" required></textarea>
+          <button class="send-button" id="send-button" type="submit" aria-label="Send message"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12 20 4l-4 16-4-6-8-2Z"/><path d="m12 14 4-5"/></svg></button>
+        </form>
+        <div class="under-composer"><span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 13 3.3v4.1c0 3.2-2.1 5.4-5 7.1-2.9-1.7-5-3.9-5-7.1V3.3L8 1.5Z"/><path d="m5.7 7.9 1.5 1.5 3.2-3.2"/></svg> Share only what you're comfortable sharing.</span><span>Not therapy or a diagnosis</span></div>
+      </section>
+
+      <aside class="side-column" aria-label="Calming tools">
+        <section class="tool-card breathing-card">
+          <div class="card-topline"><span class="card-icon breathing-icon" aria-hidden="true">◌</span><span class="tiny-label">01 · RESET</span></div>
+          <h2>A softer breath</h2>
+          <p class="tool-description">Give your attention one simple thing to follow.</p>
+          <div id="breathing-visual" class="breathing-visual" aria-label="Breathing guide" role="img"><div class="breathing-orbit"><div class="breathing-orb"><span id="breath-phase">Ready?</span></div></div></div>
+          <p id="breathing-instruction" class="breathing-instruction">Breathe comfortably. No need to force it.</p>
+          <button id="breathing-button" class="secondary-button" type="button">Start 1-minute reset <span aria-hidden="true">↗</span></button>
+          <p class="micro-note">Stop any time, and return to normal breathing if uncomfortable.</p>
+        </section>
+
+        <section class="tool-card music-card">
+          <div class="card-topline"><span class="card-icon music-icon" aria-hidden="true">♫</span><span class="tiny-label">02 · SOUND</span></div>
+          <h2>Choose a calmer sound</h2>
+          <p class="tool-description">There’s no perfect choice — pick what feels good to you.</p>
+          <div class="sound-list">
+            <button class="sound-option" data-music="Soft piano" type="button"><span class="sound-symbol piano-symbol">♫</span><span><strong>Soft piano</strong><small>Gentle, unhurried notes</small></span><span class="sound-arrow">↗</span></button>
+            <button class="sound-option" data-music="Rain sounds" type="button"><span class="sound-symbol rain-symbol">☂</span><span><strong>Rain sounds</strong><small>A steady, soft background</small></span><span class="sound-arrow">↗</span></button>
+            <button class="sound-option" data-music="Nature ambience" type="button"><span class="sound-symbol nature-symbol">✿</span><span><strong>Nature ambience</strong><small>Birdsong and a gentle breeze</small></span><span class="sound-arrow">↗</span></button>
+          </div>
+          <p class="micro-note">These are listening ideas, not audio playback.</p>
+        </section>
+
+        <section class="grounding-note">
+          <span class="grounding-spark" aria-hidden="true">✳</span>
+          <div><strong>One thing at a time.</strong><p>Try noticing your feet on the floor and naming three things you can see.</p></div>
+        </section>
+        <p class="disclaimer">Sukoon is a wellbeing prototype, not medical care. If difficult feelings persist, consider talking with a trusted adult or qualified professional.</p>
+      </aside>
+    </main>
+    <footer class="footer"><span>Made for the moments when you need a pause.</span><span class="footer-leaf" aria-hidden="true">✿</span></footer>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
